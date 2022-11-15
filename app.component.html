@@ -1,0 +1,307 @@
+<h1>Angular Router App</h1>
+<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+<nav>
+  <ul>
+    <li><a class="text-decoration-none" routerLink="/first-component" routerLinkActive="active" ariaCurrentWhenActive="page">First Component</a></li>
+    <li><a class="text-decoration-none" routerLink="/header" routerLinkActive="active" ariaCurrentWhenActive="page">Header Component</a></li>
+  </ul>
+</nav>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
+
+<h1 style="text-align: center;">welcome to angular project:</h1>
+<h2 style="text-align: center;">{{title}}</h2>
+<div class="one">
+    <app-first-componen></app-first-componen>
+    <app-first-componen></app-first-componen>
+    <app-first-componen></app-first-componen>
+    <app-first-componen></app-first-componen>
+</div>
+<div class="one">
+    <app-login></app-login>
+    <app-login></app-login>
+    <app-login></app-login>
+    <app-login></app-login>
+</div>
+
+
+<div class="input">
+    <input type="text" #box (keyup)="firstName(box.value)" placeholder="event KeyUP"> <br><br>
+    <input type="text" #box1 (keydown)="firstName(box1.value)" placeholder="event KeyUP"> <br><br>
+    <input type="text" #box2 (blur)="firstName(box2.value)" placeholder="event KeyUP"> <br><br>
+    <input type="text" #box3 (input)="firstName(box3.value)" placeholder="event KeyUP"> <br><br>
+    <input type="text" #box4 (keyup)="firstName(box4.value)" placeholder="event KeyUP"> <br><br>
+    <h1 (mouseover)="firstName('mouse over event')">mouse over event</h1>
+</div>
+<div>
+    <h1>print input field value </h1>
+    <input type="text" #name placeholder="Enter a value" name="name">
+    <button (click)="getValue(name.value)">Click</button>
+    <p>Input value is :{{displayVal}}</p>
+</div>
+<div>
+    <button (click)="getData('sub')">--</button>
+    <p>Value:{{value}} </p>
+    <button (click)="getData('add')">++</button>
+
+</div>
+<div>
+    <h1>Data Binding </h1>
+    <input type="text" name="user-name" disabled="{{disabled}}"> <br><br>
+    <input type="text" name="user-name" [disabled]="disabled">
+
+</div>
+<!-- <div>
+    <h1>If else conditions</h1>
+    <h1 *ngIf="show else elsestate">
+       If condition
+    </h1>
+    <ng-template #elsestate>
+        <h1>else statement</h1>
+    </ng-template>
+
+    <ng-template [ngIf]="color==='red'">
+          <h1 style="color: red;">color is red</h1>
+    </ng-template>
+
+    <ng-template [ngIf]="color==='blue'">
+        <h1 style="color: blue;">color is blue</h1>
+  </ng-template>
+
+  <ng-template [ngIf]="color==='yellowgreen'">
+    <h1 style="color: yellowgreen;">color is yellowgreen</h1>
+</ng-template>
+
+<ng-template [ngIf]="color==='pink'">
+    <h1 style="color: pink;">color is green</h1>
+</ng-template>
+
+    
+</div> -->
+
+<!-- <div>
+    <h1 *ngIf="show else elseBlock">
+        If condition
+    </h1>
+</div>
+
+<ng-template #elseBlock>
+ <h1>this is else statement</h1>
+</ng-template> -->
+
+<!-- If else condition -->
+<h1 *ngIf="show==='red'; then IfBlock else  elseBlock"></h1>
+
+<ng-template #IfBlock>
+    <h1 style="color: red;">If else statement</h1>
+</ng-template>
+<ng-template #elseBlock>
+    <h1 style="color: green;">else statement</h1>
+</ng-template>
+
+<!-- If else if conditions -->
+
+<ng-template [ngIf]="color==='green'">
+    <h1 style="color: green;">Green Color</h1>
+</ng-template>
+
+
+<ng-template [ngIf]="color==='blue'">
+    <h1 style="color: blue;">Blue Color</h1>
+</ng-template>
+
+<ng-template [ngIf]="color==='yellow'">
+    <h1 style="color: yellow;">yellow Color</h1>
+</ng-template>
+
+<!-- Switch statement  -->
+
+<div [ngSwitch]="color">
+    <h1 *ngSwitchCase="'red'" style="color: red;">Red</h1>
+    <h1 *ngSwitchCase="'green'" style="color: green;">Monday</h1>
+    <h1 *ngSwitchCase="'blue'" style="color: blue;">Tuesday</h1>
+    <h1 *ngSwitchCase="'yellow'" style="color:yellow ;">Wenesday</h1>
+    <h1 *ngSwitchCase="'orange'" style="color:orange ;">Thursday</h1>
+    <h1 *ngSwitchDefault style="color: pink;">Please enter a write color</h1>
+</div>
+
+<!-- for loop -->
+<h1>For Loop</h1>
+<div>
+    <h1 *ngFor="let item of users">{{item}}</h1> <br><br>
+    <h1 *ngFor="let item of userDetails">{{item.name}} ::: {{item.email}}:::{{item.address}}</h1>
+
+</div>
+<h1>Nested For Loop</h1>
+<div>
+    <!-- <p *ngFor="let item of account">{{item.accounts}}</p> -->
+    <ul *ngFor="let item of account">
+        <li>
+            {{item.first}},
+            {{item.last}},
+        </li>
+        <ol *ngFor="let item of account">
+            <li>{{item.accounts}}</li>
+
+        </ol>
+    </ul>
+</div>
+
+<div>
+    <h1 [style.color]="design" [style.backgroundColor]="bgColor">Dynamic Style Binding</h1>
+    <button (click)="updatColor()">Update Color</button>
+</div>
+<!-- Bootstrap card -->
+<div class="card " style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+
+<!-- Hide show Button -->
+<div class="text-center">
+    <button (click)="toggle()" type="button" class=" btn btn-primary mt-5 mb-5 ">click</button>
+    <h1 *ngIf="display" class="text-center mb-5">
+        Hide Show Toggle button
+
+    </h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md text-center mb-3">
+            <div>
+                <h1>Todo List</h1>
+            </div>
+            <input type="email" class="form-50 w-" #task aria-describedby="emailHelp" placeholder="Add itmes here">
+            <button (click)="add(task.value)" class="btn btn-primary">Add</button>
+            <table class="table">
+                <thead>
+                    <tr *ngFor="let item of list">
+                        <th scope="col">{{item.name}}
+                            <button (click)="remove(item.id)" class="btn btn-danger">Delete</button>
+                        </th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Send data child to parent component -->
+<div class="text-center ">
+    <h1 class="mb-5">Send data child to parent component</h1>
+    <app-header [item]="cdata"></app-header>
+    <button class="btn btn-success mb-5" (click)="updateChild()">update data</button>
+</div>
+
+<!-- reusable component  -->
+<div>
+    <app-login></app-login>
+    <div class="list">
+        <ul *ngFor="let user of userDetail">
+            <app-login [item]="user"></app-login>
+        </ul>
+
+    </div>
+</div>
+
+<!-- template reference variable -->
+<div>
+    <input type="email" #box>
+    <button (click)='getV(box.value)'>Click</button>
+</div>
+
+<!-- Pipes in angular -->
+<div>
+    <p>{{today | date:'fullDate'}}</p>
+</div>
+
+<!-- Template driven forms -->
+<div class="container">
+    <div class="row">
+        <div class="col-md mb-5">
+            <form class="w-25 m-auto" #loginForm="ngForm" (ngSubmit)="userLogin(loginForm.value)">
+                <div class="mb-3 ">
+                    <label for="" class="form-label">Enter name</label>
+                    <input type="text" class="form-control" id="box1" name="name" aria-describedby="emailHelp"
+                        placeholder="Enter name" ngModel>
+
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="box2" placeholder="Enter Password" name="password"
+                        ngModel>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Reactive form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md mb-5">
+            <form class="w-25 m-auto" [formGroup]="userD" (ngSubmit)="loginUser()">
+                <div class="mb-3 ">
+                    <label for="" class="form-label">Enter name</label>
+                    <input type="text" class="form-control" id="box1" name="user" placeholder="Enter name"
+                        formControlName="user">
+                        <span class="text-danger" *ngIf="userValidator && userValidator.invalid && userValidator.touched">
+                            Enter  valid data
+                        </span> 
+
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="box2" placeholder="Enter Password" name="password"
+                        formControlName="password">
+                        <span class="text-danger" *ngIf="passwordValidator && passwordValidator.invalid && passwordValidator.touched">
+                            Enter  valid data
+                        </span> 
+                </div>
+
+                <button [disabled]="userD.invalid" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+ </div>
+
+<!-- <div>
+
+        <h1>services section</h1>
+        <ul *ngFor="let item of client">
+            <li style="color:red ;">{{item.title}}</li>
+        </ul>
+</div> -->
+
+<div class="card m-auto" style="width: 28rem;">
+    <h1>Services with api get method</h1>
+    <div class="card-body" *ngFor="let item of client">
+      <h5 class="card-title border border-bottom-5">{{item.title}}</h5>
+    </div>
+  </div>
+
+  <!-- Post API in angular -->
+<div>
+<h1>Post API using form </h1>
+<form #postData="ngForm" (ngSubmit)="postUserFormData(postData.value)">
+    <input ngModel type="text" name="name"  placeholder="Enter your name">
+    <br><br>
+    <button>Add</button>
+</form>
+</div>
+
+
+
+
